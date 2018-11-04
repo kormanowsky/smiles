@@ -31,15 +31,9 @@ class Smile:
         if self.settings.x + self.delta_x + self.settings.size > self.screen_w or \
                 self.settings.x + self.delta_x - self.settings.size < 0:
             self.delta_x *= -1
-            self.delta_y = random.randint(-1, 1)
-            self.settings.background.reset()
-            self.settings.foreground.reset()
         if self.settings.y + self.delta_y + self.settings.size > self.screen_h or \
                 self.settings.y + self.delta_y - self.settings.size < 0:
             self.delta_y *= -1
-            self.delta_x = random.randint(-1, 1)
-            self.settings.background.reset()
-            self.settings.foreground.reset()
         self.settings.x += self.delta_x*self.settings.speed
         self.settings.y += self.delta_y*self.settings.speed
 
@@ -77,3 +71,12 @@ class Smile:
 
     def get_square(self):
         return math.pi * self.settings.size ** 2
+
+    def collides_with(self, other):
+        dst = ((self.settings.x-other.settings.x)**2+(self.settings.y-other.settings.y)**2)**0.5
+        sum = self.settings.size + other.settings.size
+        if dst < sum:
+            return 2
+        elif dst == sum:
+            return 1
+        return 0

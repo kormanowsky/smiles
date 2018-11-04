@@ -5,7 +5,7 @@ from color import *
 class GameSettings:
     @classmethod
     def instance(cls):
-        return cls(1000, 1000, Color(0, 0, 0), 4)
+        return cls(600, 600, Color(0, 0, 0), 4)
 
     def __init__(self, width, height, background_color, level):
         self.width = int(width)
